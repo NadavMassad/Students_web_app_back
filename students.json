@@ -1,25 +1,17 @@
 [
     {
         "student_id": 1,
-        "sname": "Hadari",
-        "email": "hm@gmail.com",
-        "math": 100,
-        "english": 90,
-        "computers": 90
-    },
-    {
-        "student_id": 10,
-        "sname": "Ran",
-        "email": "ran@gmail.com",
-        "math": 100,
+        "sname": "Nadav",
+        "email": "nm@gmail.com",
+        "math": 0,
         "english": 0,
         "computers": 0
     },
     {
-        "student_id": 11,
-        "sname": "Nadav",
-        "email": "nm@gmail.com",
-        "math": 100,
+        "student_id": 2,
+        "sname": "Hadari",
+        "email": "ha@gmail.com",
+        "math": 0,
         "english": 0,
         "computers": 0
     }

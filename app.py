@@ -1,4 +1,5 @@
 import json
+import os
 from flask import Flask, request
 from flask_cors import CORS
 
@@ -18,9 +19,13 @@ def save_to_file():
 # read json file
 def load_file():
     global students
-    with open("students.json", "r") as contact_file:
-        students = json.load(contact_file)
-        return students
+    if os.stat('students.json').st_size == 0:
+        return []
+    else:
+        with open("students.json", "r") as contact_file:
+            students = json.load(contact_file)
+            return students
+
 
 @app.route('/students/', methods=['GET', 'POST'])
 def student_methods():
