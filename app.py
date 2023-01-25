@@ -6,6 +6,8 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+# file name
+MY_FILE = "students.json"
 # list of students
 students = []
 
@@ -13,19 +15,22 @@ students = []
 def save_to_file():
     json_object = json.dumps(students, indent=4)
     print(json_object)
-    with open("students.json", "w") as contact_file:
+    with open(MY_FILE, "w") as contact_file:
         contact_file.write(json_object)
 
 # read json file
 def load_file():
     global students
-    if os.stat('students.json').st_size == 0:
-        return []
+    if os.path.isfile(MY_FILE):
+        if os.stat('students.json').st_size == 0:
+            return []
+        else:
+            with open(MY_FILE, "r") as contact_file:
+                students = json.load(contact_file)
+                return students
     else:
-        with open("students.json", "r") as contact_file:
-            students = json.load(contact_file)
-            return students
-
+        with open(MY_FILE, "w") as contact_file:
+            return []
 
 @app.route('/students/', methods=['GET', 'POST'])
 def student_methods():
@@ -43,7 +48,6 @@ def student_methods():
         else:
             last_stud = students[-1]
             last_id = last_stud['student_id']
-            print(last_id)
             student_id = last_id + 1
 
         new_student = {
